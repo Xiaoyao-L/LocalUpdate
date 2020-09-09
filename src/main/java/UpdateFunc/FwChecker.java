@@ -37,7 +37,7 @@ public class FwChecker {
             JSONObject jsonObject = (JSONObject) obj;
             String softwareVersion = (String) jsonObject.get("firmwareVersion");
             if (!softwareVersion.isEmpty()) {
-                softwareVersion = softwareVersion.replace(".", "");
+                //softwareVersion = softwareVersion.replace(".", "");
                 version = Integer.parseInt(softwareVersion);
 
             }
@@ -101,8 +101,8 @@ public class FwChecker {
         try {
             //System.out.println("unpacking...");
             Runtime runtime = Runtime.getRuntime();
-            //Process process1 =runtime.exec(new String[]{"rm" ,"/home/root/PC-LCD/UI_interface"});
-            //Process process2 =runtime.exec(new String[]{"rm" ,"/home/root/PC-LCD/ocpp.jar"});
+            Process process1 =runtime.exec(new String[]{"rm" ,"/home/root/PC-LCD/UI_interface"});
+            Process process2 =runtime.exec(new String[]{"rm" ,"/home/root/PC-LCD/ocpp.jar"});
 
             byte[] buffer = new byte[4096];
             File destinationFolder = new File(targetLocation);
@@ -136,6 +136,7 @@ public class FwChecker {
 
             return true;
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         }
 
